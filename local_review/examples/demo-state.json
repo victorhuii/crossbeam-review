@@ -1,0 +1,380 @@
+{
+  "project": {
+    "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff",
+    "name": "Fictional demo ADU",
+    "jurisdiction": "Fictional demo city",
+    "adu_type": "detached",
+    "area_sqft": 640,
+    "created_at": "2026-11-27T13:51:56.993126+00:00"
+  },
+  "documents": [
+    {
+      "id": "1ab32c03-c254-489e-8dbe-e4e60a00ad52",
+      "name": "fictional-plans.pdf",
+      "kind": "plans",
+      "pages": [
+        {
+          "number": 1,
+          "characters": 351,
+          "sha256": "28ae16c4c97f403a27e8adc6d2e32c334563bf10e0cdd7ef308f329544e0bf5d"
+        },
+        {
+          "number": 2,
+          "characters": 206,
+          "sha256": "daa3606b2799bc174bd61e5928eb5ca56d0a085517fcb4c39eb2419fdd94bafe"
+        }
+      ],
+      "warnings": [],
+      "source": "pdf_text",
+      "sha256": "e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d",
+      "reviewed": false,
+      "created_at": "2026-11-27T13:51:57.068090+00:00"
+    },
+    {
+      "id": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+      "name": "fictional-corrections.pdf",
+      "kind": "letter",
+      "pages": [
+        {
+          "number": 1,
+          "characters": 238,
+          "sha256": "24121b2bfb86aa20d72a7140b3f24166ab31bfb9e55e1ef9ad2801d5d7c38b2a"
+        }
+      ],
+      "warnings": [],
+      "source": "pdf_text",
+      "sha256": "0e79244e2cb40337884ac1941678e96e4200c559015ff351650347e6340a281f",
+      "reviewed": false,
+      "created_at": "2026-11-27T13:51:57.071151+00:00"
+    }
+  ],
+  "items": [
+    {
+      "id": "b574351e-3bfc-47e3-89f4-9570be270d91",
+      "label": "1.",
+      "text": "Show the proposed roof height on the elevation sheet.",
+      "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+      "source_page": 1,
+      "status": "draft",
+      "response": "A-201 contains a proposed roof height note. A qualified reviewer must inspect the current drawing and verify applicability before submission.",
+      "question": "",
+      "reference_url": "",
+      "reference_note": "",
+      "reference_checked": false,
+      "evidence": [
+        {
+          "id": "cf9b8c83-350a-4413-9bc6-4e879e490b58",
+          "document_id": "1ab32c03-c254-489e-8dbe-e4e60a00ad52",
+          "document_name": "fictional-plans.pdf",
+          "page": 2,
+          "quote": "Proposed roof height is 12 feet in this fictional example.",
+          "document_sha256": "e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d",
+          "page_sha256": "daa3606b2799bc174bd61e5928eb5ca56d0a085517fcb4c39eb2419fdd94bafe",
+          "source": "pdf_text",
+          "checked": false
+        }
+      ],
+      "revision": 2,
+      "blockers": [
+        "Check every attached quote against its original document"
+      ]
+    },
+    {
+      "id": "1b452c7b-80f1-44d6-92a5-c1e09cdff489",
+      "label": "2.",
+      "text": "Add the designer signature to the title sheet.",
+      "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+      "source_page": 1,
+      "status": "needs_info",
+      "response": "",
+      "question": "Who will provide and verify the missing designer signature?",
+      "reference_url": "",
+      "reference_note": "",
+      "reference_checked": false,
+      "evidence": [],
+      "revision": 1,
+      "blockers": [
+        "Write a response",
+        "Attach page evidence",
+        "Resolve or clear the open question"
+      ]
+    },
+    {
+      "id": "b12994ca-3856-469d-a309-81385e41fa17",
+      "label": "3.",
+      "text": "Clarify the drainage route on the site plan.",
+      "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+      "source_page": 1,
+      "status": "todo",
+      "response": "",
+      "question": "",
+      "reference_url": "",
+      "reference_note": "",
+      "reference_checked": false,
+      "evidence": [],
+      "revision": 0,
+      "blockers": [
+        "Write a response",
+        "Attach page evidence"
+      ]
+    }
+  ],
+  "checklist": [
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:identity",
+      "text": "Confirm project identity, jurisdiction, application category, and current forms.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:site",
+      "text": "Review the site plan, property boundaries, dimensions, access, and applicable setbacks.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:floor",
+      "text": "Review existing/proposed floor plans and declared area.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:elevation",
+      "text": "Review elevations, height information, and drawing consistency.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:structural",
+      "text": "Confirm structural documents and required professional review.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:systems",
+      "text": "Confirm applicable energy, utility, drainage, fire, and accessibility review.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:signatures",
+      "text": "Inspect required signatures, stamps, dates, and drawing revisions visually.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    },
+    {
+      "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff:process",
+      "text": "Confirm the current local submission process and required attachments.",
+      "status": "pending",
+      "note": "",
+      "revision": 0
+    }
+  ],
+  "events": [
+    {
+      "seq": 6,
+      "created": "2026-11-27T13:51:57.075273+00:00",
+      "kind": "item_updated",
+      "payload": {
+        "before": {
+          "id": "1b452c7b-80f1-44d6-92a5-c1e09cdff489",
+          "label": "2.",
+          "text": "Add the designer signature to the title sheet.",
+          "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+          "source_page": 1,
+          "status": "todo",
+          "response": "",
+          "question": "",
+          "reference_url": "",
+          "reference_note": "",
+          "reference_checked": false,
+          "evidence": [],
+          "revision": 0
+        },
+        "after": {
+          "id": "1b452c7b-80f1-44d6-92a5-c1e09cdff489",
+          "label": "2.",
+          "text": "Add the designer signature to the title sheet.",
+          "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+          "source_page": 1,
+          "status": "needs_info",
+          "response": "",
+          "question": "Who will provide and verify the missing designer signature?",
+          "reference_url": "",
+          "reference_note": "",
+          "reference_checked": false,
+          "evidence": [],
+          "revision": 1
+        }
+      }
+    },
+    {
+      "seq": 5,
+      "created": "2026-11-27T13:51:57.074498+00:00",
+      "kind": "item_updated",
+      "payload": {
+        "before": {
+          "id": "b574351e-3bfc-47e3-89f4-9570be270d91",
+          "label": "1.",
+          "text": "Show the proposed roof height on the elevation sheet.",
+          "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+          "source_page": 1,
+          "status": "todo",
+          "response": "",
+          "question": "",
+          "reference_url": "",
+          "reference_note": "",
+          "reference_checked": false,
+          "evidence": [
+            {
+              "id": "cf9b8c83-350a-4413-9bc6-4e879e490b58",
+              "document_id": "1ab32c03-c254-489e-8dbe-e4e60a00ad52",
+              "document_name": "fictional-plans.pdf",
+              "page": 2,
+              "quote": "Proposed roof height is 12 feet in this fictional example.",
+              "document_sha256": "e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d",
+              "page_sha256": "daa3606b2799bc174bd61e5928eb5ca56d0a085517fcb4c39eb2419fdd94bafe",
+              "source": "pdf_text",
+              "checked": false
+            }
+          ],
+          "revision": 1
+        },
+        "after": {
+          "id": "b574351e-3bfc-47e3-89f4-9570be270d91",
+          "label": "1.",
+          "text": "Show the proposed roof height on the elevation sheet.",
+          "source_document": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+          "source_page": 1,
+          "status": "draft",
+          "response": "A-201 contains a proposed roof height note. A qualified reviewer must inspect the current drawing and verify applicability before submission.",
+          "question": "",
+          "reference_url": "",
+          "reference_note": "",
+          "reference_checked": false,
+          "evidence": [
+            {
+              "id": "cf9b8c83-350a-4413-9bc6-4e879e490b58",
+              "document_id": "1ab32c03-c254-489e-8dbe-e4e60a00ad52",
+              "document_name": "fictional-plans.pdf",
+              "page": 2,
+              "quote": "Proposed roof height is 12 feet in this fictional example.",
+              "document_sha256": "e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d",
+              "page_sha256": "daa3606b2799bc174bd61e5928eb5ca56d0a085517fcb4c39eb2419fdd94bafe",
+              "source": "pdf_text",
+              "checked": false
+            }
+          ],
+          "revision": 2
+        }
+      }
+    },
+    {
+      "seq": 4,
+      "created": "2026-11-27T13:51:57.073726+00:00",
+      "kind": "evidence_attached",
+      "payload": {
+        "item_id": "b574351e-3bfc-47e3-89f4-9570be270d91",
+        "evidence": {
+          "id": "cf9b8c83-350a-4413-9bc6-4e879e490b58",
+          "document_id": "1ab32c03-c254-489e-8dbe-e4e60a00ad52",
+          "document_name": "fictional-plans.pdf",
+          "page": 2,
+          "quote": "Proposed roof height is 12 feet in this fictional example.",
+          "document_sha256": "e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d",
+          "page_sha256": "daa3606b2799bc174bd61e5928eb5ca56d0a085517fcb4c39eb2419fdd94bafe",
+          "source": "pdf_text",
+          "checked": false
+        }
+      }
+    },
+    {
+      "seq": 3,
+      "created": "2026-11-27T13:51:57.071795+00:00",
+      "kind": "document_imported",
+      "payload": {
+        "id": "2a6a9d7e-8dad-4395-874c-e1aca7159e0b",
+        "sha256": "0e79244e2cb40337884ac1941678e96e4200c559015ff351650347e6340a281f",
+        "source": "pdf_text",
+        "candidate_items": 3
+      }
+    },
+    {
+      "seq": 2,
+      "created": "2026-11-27T13:51:57.068697+00:00",
+      "kind": "document_imported",
+      "payload": {
+        "id": "1ab32c03-c254-489e-8dbe-e4e60a00ad52",
+        "sha256": "e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d",
+        "source": "pdf_text",
+        "candidate_items": 0
+      }
+    },
+    {
+      "seq": 1,
+      "created": "2026-11-27T13:51:56.994249+00:00",
+      "kind": "project_created",
+      "payload": {
+        "id": "ad0827f5-9211-43f3-bcaf-3796f5ca29ff",
+        "name": "Fictional demo ADU",
+        "jurisdiction": "Fictional demo city",
+        "adu_type": "detached",
+        "area_sqft": 640,
+        "created_at": "2026-11-27T13:51:56.993126+00:00"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "hcd-adu",
+      "name": "California HCD ADU resources",
+      "url": "https://www.hcd.ca.gov/building-standards/adu",
+      "checked_at": "2026-11-27",
+      "scope": "Official state guidance portal. Confirm applicability and current law with a qualified reviewer."
+    },
+    {
+      "id": "hcd-handbook",
+      "name": "HCD ADU Handbook \u2014 March 2026",
+      "url": "https://www.hcd.ca.gov/building-standards/adu/handbook",
+      "checked_at": "2026-11-27",
+      "scope": "Official handbook landing page, identifying its March 2026 update. Guidance is not a project-specific approval."
+    },
+    {
+      "id": "placentia-adu",
+      "name": "Placentia ADU/JADU resources",
+      "url": "https://www.placentia.org/1133/Accessory-Dwelling-Units-ADUJADU",
+      "checked_at": "2026-11-27",
+      "scope": "Example city-specific source. Use only for a project in the applicable jurisdiction; requirements may change."
+    },
+    {
+      "id": "placentia-permits",
+      "name": "Placentia permit portal information",
+      "url": "https://www.placentia.org/1053/PERMITS-ONLINE--SMARTGOV-CITIZENS-PORTAL",
+      "checked_at": "2026-11-27",
+      "scope": "Official permit-process information. Check this current page rather than assuming an older checklist's process remains valid."
+    }
+  ],
+  "blockers": [
+    "Item 1.: not reviewed",
+    "Item 2.: not reviewed",
+    "Item 3.: not reviewed",
+    "fictional-plans.pdf: original document inspection not recorded",
+    "fictional-corrections.pdf: original document inspection not recorded",
+    "Checklist: Confirm project identity, jurisdiction, application category, and current forms.",
+    "Checklist: Review the site plan, property boundaries, dimensions, access, and applicable setbacks.",
+    "Checklist: Review existing/proposed floor plans and declared area.",
+    "Checklist: Review elevations, height information, and drawing consistency.",
+    "Checklist: Confirm structural documents and required professional review.",
+    "Checklist: Confirm applicable energy, utility, drainage, fire, and accessibility review.",
+    "Checklist: Inspect required signatures, stamps, dates, and drawing revisions visually.",
+    "Checklist: Confirm the current local submission process and required attachments."
+  ],
+  "ready_for_professional_review": false
+}

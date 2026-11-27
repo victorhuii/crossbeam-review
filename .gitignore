@@ -69,3 +69,7 @@ scripts/
 *~
 .vercel
 .env*.local
+
+# Private local review data and verified portfolio graphics
+/runtime/
+!local_review/docs/assets/*.png
