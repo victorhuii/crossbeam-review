@@ -78,3 +78,6 @@ scripts/
 
 # Generated public demo output
 /local_review/demo-site/
+
+# Local Cloudflare tooling state
+.wrangler/

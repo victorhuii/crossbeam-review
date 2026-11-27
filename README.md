@@ -1,7 +1,7 @@
 # CrossBeam Review
 
 <!-- project-navigation:start -->
-[Architecture](local_review/docs/ARCHITECTURE.md) · [Design choices](local_review/docs/DECISIONS.md) · [Portfolio](local_review/docs/PORTFOLIO.md) · [Demo and deployment](local_review/docs/DEPLOYMENT.md)
+[Architecture](local_review/docs/ARCHITECTURE.md) · [Design choices](local_review/docs/DECISIONS.md) · [Portfolio](local_review/docs/PORTFOLIO.md) · [Demo and deployment](local_review/docs/DEPLOYMENT.md) · [Recorded demo](https://crossbeam-review.pages.dev)
 <!-- project-navigation:end -->
 
 ![CrossBeam Review — generated result figure](local_review/docs/assets/review-state.png)
