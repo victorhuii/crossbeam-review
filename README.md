@@ -1,159 +1,83 @@
-# CrossBeam Permits
+# CrossBeam Review
 
-CrossBeam Permits builds AI plan check for cities, counties and government agencies, around each agency's own team, rules and workflow. It covers both sides of the counter. Applicant-facing tools check plans before they are submitted. Internal tools handle intake screening, building and planning plan review, corrections letters on the agency's letterhead, backchecks and staff questions.
+A local evidence-linked workspace for preparing ADU correction-response drafts. Keep each correction, source page, response, missing-information question, and human review decision together.
 
-CrossBeam Permits works with cities, counties and agencies anywhere in the country. CrossBeam Permits is available to every California city and county, and most California jurisdictions already have their local rules loaded. Beyond California, CrossBeam Permits already runs reviews on local code in the Greater Seattle, Las Vegas, Denver and Kansas City areas.
+An attributed extension of [CrossBeam](https://github.com/mikeOnBreeze/cc-crossbeam), by **Mike Brown**, under its original MIT license. The original cloud/AI system is retained; this extension adds a separate local workflow under `local_review/`. It does not claim the original hackathon win or production city pilots.
 
-Agencies using it today:
+[Portfolio case study](local_review/docs/PORTFOLIO.md) · [Workflow and limitations](local_review/docs/METHODOLOGY.md) · [Improvements](local_review/docs/IMPROVEMENTS.md) · [Original setup](UPSTREAM_README.md)
 
-- **City of Laguna Beach**: the City Council approved a 12-month agreement unanimously on Aug 4, 2026 ([meeting minutes](https://lagunabeachcity.primegov.com/Public/CompiledDocument/1956)).
-- **City of Buena Park**: funds a free, voluntary applicant pre-check, "Buena Park Plan PreCheck by CrossBeam", launched Oct 5, 2026 ([City page](https://www.buenapark.com/city_departments/community_development/building_division/building_permits/plan_pre-check.php)).
+## Start locally
 
-**For builders.** Builders, architects and contractors use the same engine as PreCheck to review their plan set against state and local code before submittal, priced per review. Available in California, Greater Seattle, the Las Vegas area, the Denver area and Kansas City.
+Python 3.11 or newer:
 
-- Website: [crossbeam-permits.com](https://www.crossbeam-permits.com)
-- For cities and counties: [crossbeam-permits.com/cities](https://www.crossbeam-permits.com/cities)
-
-CrossBeam Permits is not affiliated with Crossbeam, the partner-ecosystem company at crossbeam.com.
-
----
-
-## History: Claude Code hackathon, Feb 2026
-
-**This repository is the hackathon snapshot, not the current product.** CrossBeam started here as a winning entry in Anthropic's global Claude Code hackathon (Feb 10-16, 2026) ([official announcement](https://x.com/claudeai/status/2024986294820958647?s=20)). The product has moved on a long way since: it now serves cities, counties and agencies as well as builders, covers far more than ADUs, and reviews on local code outside California. None of that later work is in this repo. The code below is kept as it was built during the hackathon week.
-
-At the time, CrossBeam was an AI permit assistant for California ADUs. A contractor uploaded their architectural plans and the city's corrections letter, and got back a response package ready for resubmission.
-
-### For other builders
-
-If you're curious about the build process, check out `progress.md`. I kept voice logs of my thinking throughout the hackathon while Claude was building. It's a raw, unfiltered look at the decision-making and problem-solving that went into this project.
-
-### Contact
-
-- X/Twitter: [@breezwoods](https://x.com/breezwoods)
-- LinkedIn: [Michael Brown](https://www.linkedin.com/in/michael-t-brown-034aaa22/)
-
-### The problem it took on
-
-ADU permits in California are often sent back on first submission, and many corrections are procedural rather than engineering: missing signatures, incorrect code citations, incomplete forms. Each round adds weeks. Contractors aren't lawyers, and city building departments are understaffed.
-
-### What the hackathon version does
-
-An AI agent reads the architectural plans, interprets the city's corrections letter, cross-references California state law, and generates a professional response package.
-
-#### Flow 1: Corrections Letter Interpreter
-
-The primary flow. A contractor uploads:
-1. Their submitted architectural plans (PDF)
-2. The corrections letter from the city building department
-
-The agent then:
-- Extracts and reads every page of the plans using vision
-- Parses each correction item from the city's letter
-- Cross-references against California ADU law (Government Code sections 66310-66342)
-- Researches city-specific municipal code via live web search
-- Asks the contractor clarifying questions about their project
-- Generates a corrections response package: analysis report, professional scope of work, and draft response letter
-
-#### Flow 2: Permit Checklist Generator
-
-A contractor enters their project address and basic info (ADU type, size, lot type). The agent researches city-specific requirements via web search, combines them with state-level ADU rules, and produces a pre-submission checklist with city-specific gotchas.
-
-#### Flow 3: City Pre-Screening (hackathon roadmap)
-
-In this repo, the city-side flow (an agency uploads a submission and the agent flags missing documents, unsigned pages and incomplete forms before a plan checker sees it) was only a roadmap item. It has since been built in the product, well beyond pre-screening; see [crossbeam-permits.com/cities](https://www.crossbeam-permits.com/cities).
-
-### Architecture
-
-```
-Browser (Next.js)
-    ↓ API + Supabase Realtime
-Cloud Run Server (Orchestrator)
-    ↓ launches isolated sandboxes
-Vercel Sandbox (Agent SDK + Skills)
-    ↓ reads/writes
-Supabase (Database, Realtime, Storage)
+```sh
+python3 -m venv .venv
+.venv/bin/pip install -r local_review/requirements.txt
+.venv/bin/python -m local_review.server --demo
 ```
 
-**Why this architecture:**
-- Agent runs take 10-30 minutes. Vercel serverless functions time out at 60-300s. Cloud Run provides a persistent orchestrator process.
-- Vercel Sandbox gives each job an isolated, ephemeral execution environment with file system access, needed for the Agent SDK's `claude_code` preset tools.
-- Supabase Realtime pushes status updates and agent messages to the frontend without polling.
+Open **http://127.0.0.1:8773**. The example uses fictional plans and a fictional letter. No real city, address, property, or permit is represented. Stop with Ctrl+C.
 
-### Skills-first design
+On the prepared Desktop checkout:
 
-The agent's domain knowledge comes from **skills**, structured reference files that teach the agent about a specific domain:
-
-- **California ADU Skill**: 28 reference files covering the HCD ADU Handbook (54 pages), Government Code sections 66310-66342, a decision tree router (lot type → construction type → modifiers → process), and a quick-reference thresholds table for common numbers (heights, sizes, setbacks, parking, fees).
-- **ADU Corrections Interpreter Skill**: guides the agent through the multi-step corrections analysis workflow.
-- **ADU City Research Skill**: three-mode city research (WebSearch discovery, WebFetch extraction, browser fallback for difficult city websites).
-- **CrossBeam Ops Skill**: teaches agents how to operate the deployed system via API.
-
-### Tech stack
-
-| Layer | Tech |
-|-------|------|
-| Frontend | Next.js 16, React 19, shadcn/ui, Tailwind CSS 4 |
-| Server | Express 5, Cloud Run, Vercel Sandbox |
-| Agent | Agent SDK, `claude_code` preset |
-| Database | Supabase (Postgres, Realtime, Storage) |
-| Skills | 28+ reference files, decision tree router |
-| Dev Tools | Claude Code (the entire project was built with Claude Code) |
-
-### Project structure
-
-```
-├── frontend/              # Next.js app (Vercel)
-├── server/                # Express orchestrator (Cloud Run)
-├── adu-skill-development/ # Skills: California ADU, PDF extraction
-├── agents-crossbeam/      # Agent SDK configurations
-├── .claude/skills/        # Claude Code skills (ops, city research, corrections)
-├── test-assets/           # Real permit data for testing
-│   ├── corrections/       # Placentia corrections letter + plans
-│   ├── approved/          # Long Beach approved plans
-│   └── correction-01/     # Sample agent output
-├── design-directions/     # UI design exploration
-├── docs/                  # Plans, research, learnings, schedule
-└── scripts/               # Utility scripts
+```sh
+cd ~/Desktop/crossbeam-review
+./start-local-review.sh --demo
 ```
 
-### Running locally
+Use `--port 8774` for another port or `--data /path/to/private/review.db` for another local database. Omit `--demo` to start without adding the example. The UI can create projects and load the fictional example later.
 
-#### Prerequisites
+## Workflow
 
-- Node.js 20+
-- Supabase project (for database + storage)
-- Anthropic API key
-- Vercel account (for sandbox)
+1. Create a project with its jurisdiction, category, and declared area. These are user declarations, not an eligibility check.
+2. Import plans and a correction letter as PDF or UTF-8 text. Letter extraction produces **candidate** items; inspect the original for omissions and incorrect splitting.
+3. Select a correction. Edit working wording if needed; the original extract stays recorded. Draft a response and record open questions.
+4. Search plan/reference text, inspect the source page, and attach an exact quote. The app checks text provenance; you check the original context and drawings.
+5. Mark evidence checked and explicitly confirm human review before setting an item to reviewed. Unanswered questions, missing responses, or unchecked evidence block that state.
+6. Complete document-inspection declarations and applicable checklist tasks with a review basis. Export a **draft** PDF, Markdown, or research JSON package.
 
-#### Frontend
+Exports remain drafts even when local workflow checks are complete. The tool does not determine permit approval, legal compliance, engineering adequacy, or whether a signature/dimension is valid.
 
-```bash
-cd frontend
-npm install
-cp .env.example .env.local  # Fill in Supabase + API keys
-npm run dev
+## Delivered improvements
+
+- Immutable source bytes, document/page SHA-256 hashes, exact whitespace-normalized quote matching, and project-scoped evidence.
+- Editable candidate wording with retained original text and an append-only local audit trail.
+- Review notes and explicit missing-information states; a checked quote does not become an automated compliance claim.
+- Optimistic revision checks to prevent stale updates. Unsaved response drafts survive evidence actions and rejected saves.
+- A category-scoped general checklist, source-entry links, and clear document-inspection declarations.
+- Local PDF/text ingestion and draft-only PDF/Markdown/JSON exports. No model key, cloud account, paid call, or file transmission is needed for this extension.
+
+## Limits and source freshness
+
+PDF support is text extraction, **not OCR or blueprint vision**. Blank/scanned pages are flagged. Drawings, stamps, signatures, dimensions, extraction completeness, and legal applicability require independent human review. See [pypdf's extraction limitations](https://pypdf.readthedocs.io/en/stable/user/extract-text.html).
+
+The source list links official [California HCD ADU resources](https://www.hcd.ca.gov/building-standards/adu), the [HCD handbook page](https://www.hcd.ca.gov/building-standards/adu/handbook), and example Placentia resources. Links were checked November 27, 2026. The app does not fetch, interpret, or apply law; city sources apply only to their jurisdiction. Do not treat the general task list as a complete current municipal checklist.
+
+The original repository's AI plan-reading and cloud orchestration remain available under [UPSTREAM_README.md](UPSTREAM_README.md). Their credentials, services, vision results, and production behavior were not exercised for this extension.
+
+## Verification
+
+```sh
+.venv/bin/python -m unittest discover -s local_review/tests -v
+npm ci --prefix local_review
+CROSSBEAM_PYTHON="$PWD/.venv/bin/python" npm --prefix local_review test
+node --check local_review/web/app.js
 ```
 
-#### Server
+16 Python tests and three JavaScript DOM integration tests pass. The JavaScript tests operate the actual UI handlers against a real local Python HTTP server, covering review confirmation, draft preservation, quote candidates, inert text rendering, document inspection, checklist saves, and PDF export. The original cloud application and its dependencies were not retested.
 
-```bash
-cd server
-npm install
-cp .env.example .env  # Fill in API keys
-npm run dev
-```
+Generated fictional PDFs were rendered and visually inspected. Browser layout QA was unavailable; DOM tests are not browser screenshots or accessibility certification.
 
-### Test data attribution
+## Storage and boundaries
 
-The `test-assets/` directory contains real permit documents used for development and testing:
+Original PDFs, extracted pages, responses, notes, and events stay in ignored `runtime/local-review.db`. This database is a local sensitive-document store without encryption at rest or a user-account system. The app binds to loopback, validates Host and write origins, serves fixed assets, and scopes document access by project. Do not expose it as a public server.
 
-- **California ADU Handbook** (`adu-handbook-update-2026.pdf`): published by the California Department of Housing and Community Development (HCD). Public government document.
-- **Placentia Submittal Requirements**: published by the City of Placentia Building Division. Public government document.
-- **Corrections Letter** (`corrections/2nd-Review-Corrections-1232-Jefferson-St-Placentia.pdf`): City of Placentia plan check corrections. Public government correspondence.
-- **Architectural Plans, 1232 N Jefferson, Placentia** (`corrections/Binder-1232-N-Jefferson.pdf`): included with permission from the project designer for demonstration purposes.
-- **Architectural Plans, 326 Flint Ave, Long Beach** (`approved/FLINT-AVE-326-BADD326126-APPROVED-PLANS.pdf`): included with permission from the project designer for demonstration purposes.
+Limits: 10 projects, 10 documents per project, 100 pages and 8 MB per PDF, 500,000 extracted characters per document, 100 items per project, and eight evidence quotes per item. Complex PDF streams can be rejected and may need splitting. Text imports retain explicit unverified-source labels.
 
-## License
+The audit is append-only through the application, not cryptographically tamper-proof. The UI/research JSON includes the latest 100 events; the SQLite database retains the full local history. JSON exports are review snapshots, not full original-file backups.
 
-MIT, see [LICENSE](LICENSE)
+## Attribution
+
+Original CrossBeam: Mike Brown, https://github.com/mikeOnBreeze/cc-crossbeam, base `05a38effc99a2e1ffc3a3989ddbdcbc112121492`.
+
+Local review extension and fictional examples: Victor Hui. Original MIT notices are preserved. Real upstream permit documents retain their original attribution/permissions; this extension's new demo and portfolio use only newly generated fictional material. Cloud deployment is retained as a manual workflow; the fork's automatic CI covers the local extension.

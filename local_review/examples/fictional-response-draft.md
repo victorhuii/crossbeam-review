@@ -5,7 +5,7 @@ DRAFT - FOR PROFESSIONAL REVIEW. This package is not a permit approval, code-com
 Project: Fictional demo ADU
 Jurisdiction: Fictional demo city
 Declared category / area: detached / 640 sq ft
-Generated: 2026-11-27T13:51:57.128730+00:00
+Generated: 2026-11-27T14:07:38.934497+00:00
 
 Workflow checks open: 13. This is a local checklist state, not a compliance result.
 
@@ -43,8 +43,8 @@ Response: \[Not drafted\]
 
 ## Document inspection
 
-- fictional-plans.pdf: 2 pages; pdf_text; inspection recorded: False; SHA-256 e5c65c68137ffe84733173b2fddca322f12b2f2e086a357e0a5ef3f50daecc2d
-- fictional-corrections.pdf: 1 pages; pdf_text; inspection recorded: False; SHA-256 0e79244e2cb40337884ac1941678e96e4200c559015ff351650347e6340a281f
+- fictional-plans.pdf: 2 pages; pdf_text; inspection recorded: False; SHA-256 48f8372176c46bb4048c323ba9a0bb1e6989441988e1299fb643cb2e913c1e61
+- fictional-corrections.pdf: 1 pages; pdf_text; inspection recorded: False; SHA-256 2d8af94ab7f03327d0d62c33c2c32b93b1504015a76f5cffdea9f4dfc9469820
 
 ## Human review checklist
 
@@ -60,7 +60,7 @@ Response: \[Not drafted\]
 ## Research entry points
 
 - [California HCD ADU resources](https://www.hcd.ca.gov/building-standards/adu) - link checked 2026-11-27. Official state guidance portal. Confirm applicability and current law with a qualified reviewer.
-- [HCD ADU Handbook — March 2026](https://www.hcd.ca.gov/building-standards/adu/handbook) - link checked 2026-11-27. Official handbook landing page, identifying its March 2026 update. Guidance is not a project-specific approval.
+- [HCD ADU Handbook - March 2026](https://www.hcd.ca.gov/building-standards/adu/handbook) - link checked 2026-11-27. Official handbook landing page, identifying its March 2026 update. Guidance is not a project-specific approval.
 - [Placentia ADU/JADU resources](https://www.placentia.org/1133/Accessory-Dwelling-Units-ADUJADU) - link checked 2026-11-27. Example city-specific source. Use only for a project in the applicable jurisdiction; requirements may change.
 - [Placentia permit portal information](https://www.placentia.org/1053/PERMITS-ONLINE--SMARTGOV-CITIZENS-PORTAL) - link checked 2026-11-27. Official permit-process information. Check this current page rather than assuming an older checklist's process remains valid.
 

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="720pt" height="450pt" viewBox="0 0 720 450" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-27T06:05:38.717734</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 450
+L 720 450
+L 720 0
+L 0 0
+z
+" style="fill: #fafcfc"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 86.4 315
+L 640.8 315
+L 640.8 171
+L 86.4 171
+z
+" style="fill: #fafcfc"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 111.6 315
+L 183.6 315
+L 183.6 243
+L 111.6 243
+z
+" clip-path="url(#p173ccc6764)" style="fill: #32666e"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 255.6 315
+L 327.6 315
+L 327.6 243
+L 255.6 243
+z
+" clip-path="url(#p173ccc6764)" style="fill: #b2804f"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 399.6 315
+L 471.6 315
+L 471.6 243
+L 399.6 243
+z
+" clip-path="url(#p173ccc6764)" style="fill: #819da4"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 543.6 315
+L 615.6 315
+L 615.6 315
+L 543.6 315
+z
+" clip-path="url(#p173ccc6764)" style="fill: #c3d2d6"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle" x="147.6" y="327.618125" transform="rotate(-0 147.6 327.618125)">To review</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle" x="291.6" y="327.618125" transform="rotate(-0 291.6 327.618125)">Needs information</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle" x="435.6" y="327.618125" transform="rotate(-0 435.6 327.618125)">Draft</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle" x="579.6" y="327.618125" transform="rotate(-0 579.6 327.618125)">Reviewed</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end" x="82.9" y="319.558594" transform="rotate(-0 82.9 319.558594)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end" x="82.9" y="247.558594" transform="rotate(-0 82.9 247.558594)">1</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end" x="82.9" y="175.558594" transform="rotate(-0 82.9 175.558594)">2</text>
+     </g>
+    </g>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #28373b" x="147.6" y="237.24" transform="rotate(-0 147.6 237.24)">1</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #28373b" x="291.6" y="237.24" transform="rotate(-0 291.6 237.24)">1</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #28373b" x="435.6" y="237.24" transform="rotate(-0 435.6 237.24)">1</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #28373b" x="579.6" y="309.24" transform="rotate(-0 579.6 309.24)">0</text>
+   </g>
+  </g>
+  <g id="text_12">
+   <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #32666e" x="50.4" y="45" transform="rotate(-0 50.4 45)">CROSSBEAM REVIEW</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #28373b" x="50.4" y="90" transform="rotate(-0 50.4 90)">Unresolved work stays visible</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #65757b" x="50.4" y="121.5" transform="rotate(-0 50.4 121.5)">Fictional demo state · workflow counts, not permit outcomes</text>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #65757b" x="50.4" y="369" transform="rotate(-0 50.4 369)">13 workflow checks open. One attached quote still needs original-context review.</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 10.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #65757b" x="50.4" y="405" transform="rotate(-0 50.4 405)">Source: generated fictional demo-state.json. No compliance or approval result is inferred.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p173ccc6764">
+   <rect x="86.4" y="171" width="554.4" height="144"/>
+  </clipPath>
+ </defs>
+</svg>

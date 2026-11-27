@@ -73,7 +73,7 @@ def pdf(state):
     for task in state['checklist']:story += [para(task['status'].upper()+' - '+task['text']),para('Review basis: '+(task['note'] or '[Not recorded]'),small)]
     story.append(para('Research entry points',heading))
     for source in state['sources']:story += [para(source['name']),para(source['url'],small),para(f"Link checked {source['checked_at']}. {source['scope']}",small)]
-    story.append(para('Source links were not automatically interpreted or applied to this project. '+NOTICE,small))
+    story.append(para('Research links are entry points only. Verify current law and jurisdiction applicability independently.',small))
     output=io.BytesIO();doc=SimpleDocTemplate(output,pagesize=A4,rightMargin=46,leftMargin=46,topMargin=46,bottomMargin=48,title='CrossBeam response draft',author='CrossBeam Review local workspace')
     def footer(canvas,document):
         canvas.saveState();canvas.setStrokeColor(colors.HexColor('#d9e3e5'));canvas.line(46,37,A4[0]-46,37);canvas.setFont('Review',7);canvas.setFillColor(colors.HexColor('#62747a'));canvas.drawString(46,24,'DRAFT - FOR PROFESSIONAL REVIEW');canvas.drawRightString(A4[0]-46,24,f'Page {document.page}');canvas.restoreState()

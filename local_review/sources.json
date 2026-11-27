@@ -1,6 +1,6 @@
 [
  {"id":"hcd-adu","name":"California HCD ADU resources","url":"https://www.hcd.ca.gov/building-standards/adu","checked_at":"2026-11-27","scope":"Official state guidance portal. Confirm applicability and current law with a qualified reviewer."},
- {"id":"hcd-handbook","name":"HCD ADU Handbook — March 2026","url":"https://www.hcd.ca.gov/building-standards/adu/handbook","checked_at":"2026-11-27","scope":"Official handbook landing page, identifying its March 2026 update. Guidance is not a project-specific approval."},
+ {"id":"hcd-handbook","name":"HCD ADU Handbook - March 2026","url":"https://www.hcd.ca.gov/building-standards/adu/handbook","checked_at":"2026-11-27","scope":"Official handbook landing page, identifying its March 2026 update. Guidance is not a project-specific approval."},
  {"id":"placentia-adu","name":"Placentia ADU/JADU resources","url":"https://www.placentia.org/1133/Accessory-Dwelling-Units-ADUJADU","checked_at":"2026-11-27","scope":"Example city-specific source. Use only for a project in the applicable jurisdiction; requirements may change."},
  {"id":"placentia-permits","name":"Placentia permit portal information","url":"https://www.placentia.org/1053/PERMITS-ONLINE--SMARTGOV-CITIZENS-PORTAL","checked_at":"2026-11-27","scope":"Official permit-process information. Check this current page rather than assuming an older checklist's process remains valid."}
 ]

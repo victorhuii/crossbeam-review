@@ -56,6 +56,15 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(self.state()['items'][0]['response'],item['response'])
     def test_search_is_only_candidate_text_and_excludes_letter(self):
         results=self.store.search(self.pid,'roof height elevation');self.assertTrue(results);self.assertTrue(all(r['name']!='fictional-corrections.pdf' for r in results));self.assertTrue(any(r['page']==2 for r in results))
+    def test_reference_needs_checked_applicability_and_written_basis(self):
+        item=self.state()['items'][0];e=item['evidence'][0]
+        item=self.store.review_evidence(self.pid,dict(item_id=item['id'],revision=item['revision'],evidence_id=e['id'],checked=True))
+        body=dict(id=item['id'],revision=item['revision'],status='reviewed',response='Fictional draft only',question='',confirm_review=True,reference_url='https://www.hcd.ca.gov/building-standards/adu',reference_checked=False,reference_note='')
+        with self.assertRaisesRegex(ValueError,'applicability'):self.store.update_item(self.pid,body)
+        body['reference_checked']=True
+        with self.assertRaisesRegex(ValueError,'basis'):self.store.update_item(self.pid,body)
+        body['reference_note']='Fictional test basis only; not an actual legal interpretation'
+        self.assertEqual(self.store.update_item(self.pid,body)['status'],'reviewed')
     def test_checklist_needs_basis_and_scoped_categories(self):
         task=self.state()['checklist'][0]
         with self.assertRaises(ValueError):self.store.update_task(self.pid,dict(id=task['id'],revision=0,status='not_applicable',note=''))

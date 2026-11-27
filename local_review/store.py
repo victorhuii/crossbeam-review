@@ -38,6 +38,7 @@ def item_blockers(item):
     if not item['evidence']:problems.append('Attach page evidence')
     elif not all(e['checked'] for e in item['evidence']):problems.append('Check every attached quote against its original document')
     if item['reference_url'] and not item['reference_checked']:problems.append('Check the cited legal/reference source and applicability')
+    if item['reference_url'] and not item['reference_note'].strip():problems.append('Record the cited reference basis and applicability')
     if item['question'].strip():problems.append('Resolve or clear the open question')
     return problems
 

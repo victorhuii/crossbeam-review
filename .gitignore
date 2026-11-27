@@ -73,3 +73,5 @@ scripts/
 # Private local review data and verified portfolio graphics
 /runtime/
 !local_review/docs/assets/*.png
+!local_review/scripts/
+!local_review/scripts/**
