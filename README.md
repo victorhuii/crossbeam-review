@@ -1,5 +1,13 @@
 # CrossBeam Review
 
+<!-- project-navigation:start -->
+[Architecture](local_review/docs/ARCHITECTURE.md) · [Design choices](local_review/docs/DECISIONS.md) · [Portfolio](local_review/docs/PORTFOLIO.md)
+<!-- project-navigation:end -->
+
+![CrossBeam Review — generated result figure](local_review/docs/assets/review-state.png)
+
+*Generated result figure. Existing project evidence; this is not a browser screenshot.*
+
 A local evidence-linked workspace for preparing ADU correction-response drafts. Keep each correction, source page, response, missing-information question, and human review decision together.
 
 An attributed extension of [CrossBeam](https://github.com/mikeOnBreeze/cc-crossbeam), by **Mike Brown**, under its original MIT license. The original cloud/AI system is retained; this extension adds a separate local workflow under `local_review/`. It does not claim the original hackathon win or production city pilots.
