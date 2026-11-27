@@ -68,4 +68,26 @@ class ReviewTests(unittest.TestCase):
     def test_audit_and_original_document_survive_restart(self):
         fresh=Store(self.store.path);state=fresh.state(self.pid);self.assertTrue(state['events']);self.assertTrue(fresh.raw(self.pid,state['documents'][0]['id']).startswith(b'%PDF-'));self.assertEqual(len(state['items']),3)
 
+class CompletionTests(unittest.TestCase):
+    setUp=ReviewTests.setUp
+    tearDown=ReviewTests.tearDown
+    state=ReviewTests.state
+    def test_editable_working_text_preserves_the_original(self):
+        item=self.state()['items'][0];original=item['text']
+        changed=self.store.update_item(self.pid,dict(id=item['id'],revision=item['revision'],status='draft',response='Draft',correction_text='Reviewer clarification of the roof-height request',label='1 revised'))
+        self.assertEqual(changed['original_text'],original);self.assertTrue(changed['text_edited'])
+        self.assertIn('Original extracted text',markdown(self.state()))
+    def test_full_workflow_can_complete_without_becoming_an_approval(self):
+        doc=self.state()['documents'][0]
+        for item in self.state()['items']:
+            if not item['evidence']:
+                item=self.store.evidence(self.pid,dict(item_id=item['id'],revision=item['revision'],document_id=doc['id'],page=2,quote='Proposed roof height is 12 feet in this fictional example.',checked=False))
+            for evidence in list(item['evidence']):
+                item=self.store.review_evidence(self.pid,dict(item_id=item['id'],revision=item['revision'],evidence_id=evidence['id'],checked=True))
+            self.store.update_item(self.pid,dict(id=item['id'],revision=item['revision'],status='reviewed',response='Fictional workflow assertion only; not a compliance finding.',question='',confirm_review=True))
+        for d in self.state()['documents']:self.store.review_document(self.pid,dict(id=d['id'],reviewed=True))
+        for task in self.state()['checklist']:self.store.update_task(self.pid,dict(id=task['id'],revision=task['revision'],status='checked',note='Fictional automated test declaration only'))
+        state=self.state();self.assertTrue(state['ready_for_professional_review']);self.assertFalse(state['blockers']);self.assertNotIn('approved',state)
+        self.store.review_document(self.pid,dict(id=doc['id'],reviewed=False));self.assertFalse(self.state()['ready_for_professional_review'])
+
 if __name__=='__main__':unittest.main()

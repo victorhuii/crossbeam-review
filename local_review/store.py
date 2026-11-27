@@ -98,7 +98,7 @@ class Store:
             if db.execute('SELECT count(*) FROM items WHERE project_id=?',(pid,)).fetchone()[0]+len(candidates)>100:raise ValueError('Maximum 100 correction items per project')
             db.execute('INSERT INTO documents VALUES(?,?,?,?)',(doc['id'],pid,json.dumps(doc),raw))
             for c in candidates:
-                item=dict(id=uid(),label=c['label'],text=c['text'],source_document=doc['id'],source_page=c['page'],status='todo',response='',question='',reference_url='',reference_note='',reference_checked=False,evidence=[],revision=0)
+                item=dict(id=uid(),label=c['label'],text=c['text'],original_text=c['text'],text_edited=False,source_document=doc['id'],source_page=c['page'],status='todo',response='',question='',reference_url='',reference_note='',reference_checked=False,evidence=[],revision=0)
                 db.execute('INSERT INTO items VALUES(?,?,?)',(item['id'],pid,json.dumps(item)))
             self._event(db,pid,'document_imported',dict(id=doc['id'],sha256=sha,source=source,candidate_items=len(candidates)))
         return doc
@@ -118,6 +118,10 @@ class Store:
     def update_item(self,pid,body):
         with self.db() as db:
             item=self._get(db,'items',body.get('id'),pid);self._revision(item,body);before=dict(item)
+            working=text(body.get('correction_text',item['text']),3000)
+            if not working:raise ValueError('Correction text cannot be empty')
+            item.setdefault('original_text',item['text'] if item['source_document'] else None)
+            item.update(text=working,text_edited=working!=item['original_text'],label=label(body.get('label',item['label']),30))
             item.update(response=text(body.get('response',''),6000),question=text(body.get('question',''),2000),reference_url=safe_url(body.get('reference_url','')),reference_note=text(body.get('reference_note',''),2000),reference_checked=body.get('reference_checked') is True,status=body.get('status'))
             if item['status'] not in ('todo','needs_info','draft','reviewed'):raise ValueError('Invalid review status')
             if item['status']=='needs_info' and not item['question']:raise ValueError('Describe the missing information')
@@ -130,7 +134,7 @@ class Store:
     def manual_item(self,pid,body):
         value=text(body.get('text',''),3000)
         if not value:raise ValueError('Enter the correction text')
-        item=dict(id=uid(),label=label(body.get('label'),30),text=value,source_document=None,source_page=None,status='todo',response='',question='',reference_url='',reference_note='',reference_checked=False,evidence=[],revision=0)
+        item=dict(id=uid(),label=label(body.get('label'),30),text=value,original_text=None,text_edited=True,source_document=None,source_page=None,status='todo',response='',question='',reference_url='',reference_note='',reference_checked=False,evidence=[],revision=0)
         with self.db() as db:
             self._get(db,'projects',pid)
             if db.execute('SELECT count(*) FROM items WHERE project_id=?',(pid,)).fetchone()[0]>=100:raise ValueError('Maximum 100 items')
@@ -161,6 +165,18 @@ class Store:
             doc=self._get(db,'documents',body.get('id'),pid);doc['reviewed']=body.get('reviewed') is True
             db.execute('UPDATE documents SET payload=? WHERE id=?',(json.dumps(doc),doc['id']));self._event(db,pid,'document_review_changed',dict(id=doc['id'],reviewed=doc['reviewed']))
         return doc
+    def review_evidence(self,pid,body):
+        with self.db() as db:
+            item=self._get(db,'items',body.get('item_id'),pid);self._revision(item,body)
+            evidence=next((e for e in item['evidence'] if e['id']==body.get('evidence_id')),None)
+            if not evidence:raise ValueError('Evidence not found')
+            doc=self._get(db,'documents',evidence['document_id'],pid)
+            match_quote(doc['pages'][evidence['page']-1],evidence['quote'])
+            evidence['checked']=body.get('checked') is True
+            if item['status']=='reviewed':item['status']='draft'
+            item['revision']+=1;db.execute('UPDATE items SET payload=? WHERE id=?',(json.dumps(item),item['id']))
+            self._event(db,pid,'evidence_review_changed',dict(item_id=item['id'],evidence_id=evidence['id'],checked=evidence['checked']))
+        return item
     def update_task(self,pid,body):
         with self.db() as db:
             task=self._get(db,'checklist',body.get('id'),pid);self._revision(task,body);status=body.get('status');note=text(body.get('note',''),2000)

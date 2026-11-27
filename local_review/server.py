@@ -70,6 +70,7 @@ def handler_for(store):
                 elif path=='/api/item/new':result=store.manual_item(pid,body)
                 elif path=='/api/evidence':result=store.evidence(pid,body)
                 elif path=='/api/evidence/remove':result=store.evidence(pid,body,remove=True)
+                elif path=='/api/evidence/check':result=store.review_evidence(pid,body)
                 elif path=='/api/document/review':result=store.review_document(pid,body);result={k:v for k,v in result.items() if k!='pages'}
                 elif path=='/api/checklist':result=store.update_task(pid,body)
                 else:raise ValueError('Unknown action')

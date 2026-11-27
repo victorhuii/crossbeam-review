@@ -1,0 +1,30 @@
+name: local review
+on:
+  push:
+    paths: ['local_review/**', '.github/workflows/local-review.yml']
+  pull_request:
+    paths: ['local_review/**', '.github/workflows/local-review.yml']
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: local_review
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: local_review/package-lock.json
+      - run: python -m pip install -r local_review/requirements.txt
+      - run: python -m unittest discover -s local_review/tests -v
+      - run: npm ci --prefix local_review
+      - run: npm --prefix local_review test
+        env:
+          CROSSBEAM_PYTHON: python
+      - run: node --check local_review/web/app.js

@@ -17,6 +17,7 @@ def markdown(state):
     for item in state['items']:
         origin=docs.get(item['source_document']);where=f"{origin['name']} p. {item['source_page']}" if origin else 'Manually entered correction'
         rows += [f"## Item {md(item['label'])} - {md(item['status'])}",'',f'Correction source: {md(where)}','',md(item['text']),'','Response: '+md(item['response'] or '[Not drafted]'),'']
+        if item.get('text_edited') and item.get('original_text'):rows+=['Reviewer-edited correction. Original extracted text: '+md(item['original_text']),'']
         if item['question']:rows+=['Open question: '+md(item['question']),'']
         for e in item['evidence']:
             rows += [f"Evidence: {md(e['document_name'])}, p. {e['page']} / {md(e['source'])} / original checked: {e['checked']}",'', '> '+md(e['quote']).replace('\n','\n> '),'',f"Page SHA-256: {e['page_sha256']}",'']
@@ -59,6 +60,7 @@ def pdf(state):
     for item in state['items']:
         origin=docs.get(item['source_document']);where=f"{origin['name']} / p. {item['source_page']}" if origin else 'Manually entered correction'
         story += [para(f"Item {item['label']} - {item['status']}",heading),para('Correction source: '+where,small),para(item['text']),para('Response: '+(item['response'] or '[Not drafted]'))]
+        if item.get('text_edited') and item.get('original_text'):story.append(para('Reviewer-edited correction. Original extracted text: '+item['original_text'],small))
         if item['question']:story.append(para('Open question: '+item['question']))
         for e in item['evidence']:
             story += [para(f"Evidence: {e['document_name']} / p. {e['page']} / {e['source']} / original checked: {e['checked']}",small),para('Quote: '+e['quote']),para('Page SHA-256: '+e['page_sha256'],small)]
