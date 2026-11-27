@@ -1,0 +1,32 @@
+{
+  "repo": "crossbeam-review",
+  "title": "CrossBeam Review",
+  "summary": "Evidence-linked local correction review with source-page quotes, human gates, and draft response exports.",
+  "image": "local_review/docs/assets/review-state.png",
+  "image_kind": "Generated result figure",
+  "architecture": "local_review/docs/ARCHITECTURE.md",
+  "portfolio": "local_review/docs/PORTFOLIO.md",
+  "ownership": "Attributed fork extension",
+  "evidence": "Contribution is the local review workflow; Mike Brown owns the original CrossBeam work.",
+  "limitation": "MIT fork extension of Mike Brown\u2019s CrossBeam; examples are fictional and exports remain drafts.",
+  "output": "local_review/demo-site",
+  "deployment_doc": "local_review/docs/DEPLOYMENT.md",
+  "decisions_doc": "local_review/docs/DECISIONS.md",
+  "decisions": [
+    [
+      "Separate attributed local extension",
+      "Preserve the original MIT cloud/AI project and clearly bound the new contribution.",
+      "Upstream cloud/model behavior is not established by local checks."
+    ],
+    [
+      "Text/page provenance and identity checks",
+      "Connect each review item to the imported document and source page.",
+      "Text extraction does not establish OCR, blueprint vision or legal compliance."
+    ],
+    [
+      "Human gates and draft-only exports",
+      "Keep missing information and professional judgment explicit.",
+      "No signatures, permit approvals or compliance certification are generated."
+    ]
+  ]
+}

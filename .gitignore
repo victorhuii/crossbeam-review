@@ -75,3 +75,6 @@ scripts/
 !local_review/docs/assets/*.png
 !local_review/scripts/
 !local_review/scripts/**
+
+# Generated public demo output
+/local_review/demo-site/
